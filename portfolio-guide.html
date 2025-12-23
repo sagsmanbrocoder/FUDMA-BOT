@@ -11,11 +11,72 @@
             box-sizing: border-box;
         }
         
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -31,6 +92,7 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             margin-bottom: 30px;
             text-align: center;
+            animation: fadeInUp 1s ease-out;
         }
         
         .profile {
@@ -51,6 +113,8 @@
             justify-content: center;
             color: white;
             font-size: 50px;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
         
         .profile-info h1 {
@@ -88,6 +152,7 @@
             border-radius: 15px;
             margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
         }
         
         .section h2 {
@@ -111,6 +176,18 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+        
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
         }
         
         .stat-card .number {
@@ -137,12 +214,21 @@
             padding: 20px;
             transition: all 0.3s ease;
             cursor: pointer;
+            animation: fadeInUp 0.8s ease-out backwards;
         }
         
+        .repo-card:nth-child(1) { animation-delay: 0s; }
+        .repo-card:nth-child(2) { animation-delay: 0.1s; }
+        .repo-card:nth-child(3) { animation-delay: 0.2s; }
+        .repo-card:nth-child(4) { animation-delay: 0.3s; }
+        .repo-card:nth-child(5) { animation-delay: 0.4s; }
+        .repo-card:nth-child(6) { animation-delay: 0.5s; }
+        
         .repo-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             border-color: #667eea;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            background: #fff;
         }
         
         .repo-name {
@@ -316,18 +402,126 @@
             font-weight: bold;
             margin: 15px 0;
             transition: all 0.3s;
+            animation: fadeInUp 1s ease-out;
         }
         
         .unwrapped-link:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
         }
+        
+        .timestamp {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .narration-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #e65100;
+        }
+        
+        .video-script {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .video-script strong {
+            color: #6a1b9a;
+        }
+        
+        .recording-guide {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .recording-guide h3 {
+            margin-bottom: 15px;
+        }
+        
+        .recording-step {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid white;
+        }
+        
+        .badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+        
+        .badge:nth-child(1) { animation-delay: 0s; }
+        .badge:nth-child(2) { animation-delay: 0.1s; }
+        .badge:nth-child(3) { animation-delay: 0.2s; }
+        .badge:nth-child(4) { animation-delay: 0.3s; }
+        .badge:nth-child(5) { animation-delay: 0.4s; }
+        .badge:nth-child(6) { animation-delay: 0.5s; }
+        .badge:nth-child(7) { animation-delay: 0.6s; }
+        .badge:nth-child(8) { animation-delay: 0.7s; }
+        
+        .feature-highlight {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .feature-highlight strong {
+            color: #2e7d32;
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 20px;
+            }
+            
+            .repos-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Recording Guide (Scrollable) -->
+    <div style="position: sticky; top: 0; z-index: 999; background: linear-gradient(90deg, #4caf50, #45a049); color: white; padding: 12px; text-align: center; animation: slideInDown 0.5s ease-out;">
+        <strong>🎥 VIDEO RECORDING MODE:</strong> Scroll through this page and record your screen to create your portfolio video!
+        <a href="#recording-instructions" style="color: white; margin-left: 15px; text-decoration: underline;">📹 View Recording Tips</a>
+    </div>
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Header Section -->
         <header>
+            <div class="timestamp">📍 SCENE 1: Introduction (0:00 - 0:15)</div>
             <div class="profile">
                 <div class="profile-pic">👨‍💻</div>
                 <div class="profile-info">
@@ -336,6 +530,10 @@
                     <p>📧 sagirugarba26@gmail.com</p>
                     <p>🌐 GitHub: <strong>SagsMan</strong></p>
                 </div>
+            </div>
+            
+            <div class="narration-box">
+                🎤 <strong>Narration (0:00-0:15):</strong> "Hi, I'm Sagiru Garba, a full stack developer and AI engineer with expertise in Python, PHP, JavaScript, and C++. I have over 40 open-source projects showcasing my skills in web development, machine learning, and healthcare technology."
             </div>
             
             <div class="badges">
@@ -356,7 +554,11 @@
         
         <!-- Statistics Section -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 2: Portfolio Statistics (0:15 - 0:45)</div>
             <h2>📊 Portfolio Statistics</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (0:15-0:45):</strong> "My portfolio includes 40+ projects across different domains. I work with 5 programming languages, organized into 8 different categories. All my projects are open source, which means anyone can view, use, and contribute to them. Here are the key statistics:"
+            </div>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="number">40+</div>
@@ -379,7 +581,11 @@
         
         <!-- Language Distribution -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 3: Language Distribution (0:45 - 1:30)</div>
             <h2>💻 Language Distribution</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (0:45-1:30):</strong> "I work with multiple programming languages, each suited for different purposes. Python is my primary language for AI and machine learning projects. PHP powers my web backend applications. JavaScript handles front-end interactions. HTML and CSS create responsive designs. And C++ is used for performance-critical system applications."
+            </div>
             <div class="languages">
                 <div class="lang-item">
                     <div class="lang-color" style="background: #4B8BBE;"></div>
@@ -406,7 +612,11 @@
         
         <!-- Navigation Tabs -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 4: Project Showcase (1:30 - 4:00)</div>
             <h2>📂 Project Categories</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (1:30-4:00):</strong> "Let me walk you through my major projects organized by category. I have AI/ML projects including models for disease prediction and gesture recognition. Web applications for various industries. Healthcare solutions. And many utilities. I'll navigate through each category to show the projects."
+            </div>
             
             <div class="nav-tabs">
                 <div class="nav-tab active" onclick="switchTab(event, 'ai-ml')">🤖 AI/ML (7)</div>
@@ -608,7 +818,11 @@
         
         <!-- GitHub Workflow Section -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 5: Git Workflow (4:00 - 5:30)</div>
             <h2>🔄 Git Workflow & Collaboration</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (4:00-5:30):</strong> "Here's my Git workflow for collaboration. I use a fork-based development model. First, you fork the main repository to your account. Then create a feature branch for your changes. Make your commits with clear messages. Push to your fork. Create a pull request to the main repository. The code is reviewed, and finally merged. This workflow ensures code quality and clean history."
+            </div>
             
             <div class="workflow">
                 <h3>📌 Fork-Based Development Workflow</h3>
@@ -670,7 +884,11 @@
         
         <!-- FUDMA-BOT Specific Section -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 6: FUDMA-BOT Deep Dive (5:30 - 7:00)</div>
             <h2>🤖 FUDMA-BOT: Main Project</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (5:30-7:00):</strong> "FUDMA-BOT is my flagship project. It's an intelligent chatbot built with Flask and powered by Google's Gemini 2.5 Flash AI. The original was written in PHP, but I created a Python version using Flask. It features a responsive web interface, AI-powered responses, safety features, and RESTful API design. This project demonstrates my full-stack development capabilities."
+            </div>
             <p style="margin-bottom: 20px; font-size: 1.05em;">
                 FUDMA-BOT is an intelligent chatbot built with Flask and powered by Google Gemini 2.5 Flash API. 
                 It demonstrates full-stack development with modern web technologies and AI integration.
@@ -723,7 +941,11 @@ Safety Settings:
         
         <!-- Git Commands Reference -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 7: Git Commands (7:00 - 8:30)</div>
             <h2>📖 Essential Git Commands</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (7:00-8:30):</strong> "Let me show you the essential Git commands I use daily. These include cloning repositories, creating branches, staging and committing changes, pushing to remote, and merging code. Understanding these commands is crucial for any developer working with version control."
+            </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 <div class="workflow">
@@ -776,7 +998,11 @@ git clean -fd                 # Remove untracked</code></div>
         
         <!-- GitHub CLI Section -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 8: GitHub CLI (8:30 - 9:30)</div>
             <h2>🚀 GitHub CLI Commands</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (8:30-9:30):</strong> "GitHub CLI (gh) is a powerful tool that brings GitHub to your terminal. You can manage repositories, create pull requests, manage issues, and handle all GitHub operations from the command line. These commands make development workflow faster and more efficient."
+            </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 <div class="workflow">
@@ -817,7 +1043,11 @@ gh issue reopen 1</code></div>
         
         <!-- Best Practices -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 9: Best Practices (9:30 - 10:30)</div>
             <h2>✅ Coding Best Practices</h2>
+            <div class="narration-box">
+                🎤 <strong>Narration (9:30-10:30):</strong> "Good coding practices are essential. I follow standardized conventions for commit messages, branch naming, code style, and testing. These practices ensure code quality, maintainability, and make collaboration easier. Let me show you the conventions I follow in all my projects."
+            </div>
             
             <div class="workflow">
                 <h3>📋 Commit Message Conventions</h3>
@@ -867,8 +1097,12 @@ release/v1.0.0</code></div>
         
         <!-- Statistics Dashboard -->
         <section class="section">
+            <div class="timestamp">📍 SCENE 10: GitHub Unwrapped (10:30 - 11:00)</div>
             <h2>📈 GitHub Unwrapped 2024 Highlights</h2>
             <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); color: white; padding: 30px; border-radius: 10px; margin: 20px 0;">
+                <div class="narration-box" style="background: rgba(255,255,255,0.1); border-left-color: white;">
+                    🎤 <strong>Narration (10:30-11:00):</strong> "Finally, let me show you GitHub Unwrapped 2024. This is an annual report that GitHub generates showing my contributions throughout the year. It includes all repositories, programming languages, commits, pull requests, and development activity. Click on the link to see my complete 2024 profile."
+                </div>
                 <p style="font-size: 1.2em; margin-bottom: 20px;">
                     📊 <strong>View your complete GitHub profile on GitHub Unwrapped 2024!</strong>
                 </p>
@@ -977,6 +1211,151 @@ Happy Coding! 🚀
             <p>💼 Portfolio & GitHub Guide | 2024 | Sagiru Garba - Full Stack Developer & AI Engineer</p>
             <p>🚀 Building amazing projects • 🤝 Open to collaboration • 📚 Always learning</p>
         </footer>
+        
+        <!-- Recording Instructions Section -->
+        <section class="section" id="recording-instructions" style="background: linear-gradient(135deg, #4caf50, #45a049); color: white; margin-top: 40px;">
+            <div class="timestamp" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white;">🎥 VIDEO RECORDING GUIDE</div>
+            <h2 style="color: white;">📹 How to Record Your Portfolio Video</h2>
+            
+            <div class="recording-guide" style="background: rgba(255,255,255,0.1); border: 2px solid white;">
+                <h3>✅ Step-by-Step Recording Guide</h3>
+                <div class="recording-step">
+                    <strong>Step 1: Choose Your Recording Tool</strong>
+                    <p>• Windows: Use Built-in Screen Recording (Win+Shift+S) or OBS Studio (Free)</p>
+                    <p>• Mac: Use QuickTime Player or ScreenFlow</p>
+                    <p>• Linux: Use SimpleScreenRecorder or OBS Studio</p>
+                </div>
+                <div class="recording-step">
+                    <strong>Step 2: Set Up Your Environment</strong>
+                    <p>• Open this portfolio guide in a web browser (fullscreen recommended)</p>
+                    <p>• Close notifications and distractions</p>
+                    <p>• Set zoom to 100% for best quality</p>
+                    <p>• Use high resolution (1080p or 4K recommended)</p>
+                </div>
+                <div class="recording-step">
+                    <strong>Step 3: Recording Process</strong>
+                    <p>• Start recording</p>
+                    <p>• Introduce yourself (0:00-0:15) - "Hi, I'm Sagiru Garba..."</p>
+                    <p>• Scroll through each scene slowly (follow timestamps)</p>
+                    <p>• Read the narration provided for each section</p>
+                    <p>• Hover over project cards to show interaction effects</p>
+                    <p>• Click on the GitHub Unwrapped link at the end</p>
+                    <p>• Total video length: ~11 minutes</p>
+                </div>
+                <div class="recording-step">
+                    <strong>Step 4: Audio/Voiceover</strong>
+                    <p>• Record narration alongside video (recommended for professional quality)</p>
+                    <p>• Or: Add voiceover during post-production using video editor</p>
+                    <p>• Speak clearly and at a measured pace</p>
+                    <p>• Use the narration texts provided in each section</p>
+                </div>
+                <div class="recording-step">
+                    <strong>Step 5: Post-Production (Optional)</strong>
+                    <p>• Edit video in DaVinci Resolve (Free), Adobe Premiere, or iMovie</p>
+                    <p>• Add title cards with timestamps</p>
+                    <p>• Add background music (low volume)</p>
+                    <p>• Add captions/subtitles for accessibility</p>
+                    <p>• Export as MP4 (1080p, H.264 codec recommended)</p>
+                </div>
+                <div class="recording-step">
+                    <strong>Step 6: Upload & Share</strong>
+                    <p>• Upload to YouTube as Unlisted or Public</p>
+                    <p>• Add description with links to your GitHub profile</p>
+                    <p>• Add tags: #developer #portfolio #github #fullstack #ai</p>
+                    <p>• Share on LinkedIn, Twitter, and other social media</p>
+                </div>
+            </div>
+            
+            <h3 style="color: white; margin-top: 30px;">⏱️ Video Timeline with Timestamps</h3>
+            <table style="width: 100%; color: white; border-collapse: collapse; margin-top: 15px;">
+                <tr style="background: rgba(255,255,255,0.1);">
+                    <th style="padding: 10px; border: 1px solid white;">Time</th>
+                    <th style="padding: 10px; border: 1px solid white;">Scene</th>
+                    <th style="padding: 10px; border: 1px solid white;">Content</th>
+                    <th style="padding: 10px; border: 1px solid white;">Duration</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid white;">0:00-0:15</td>
+                    <td style="padding: 10px; border: 1px solid white;">Introduction</td>
+                    <td style="padding: 10px; border: 1px solid white;">Your name, title, GitHub handle</td>
+                    <td style="padding: 10px; border: 1px solid white;">15 sec</td>
+                </tr>
+                <tr style="background: rgba(0,0,0,0.1);">
+                    <td style="padding: 10px; border: 1px solid white;">0:15-0:45</td>
+                    <td style="padding: 10px; border: 1px solid white;">Statistics</td>
+                    <td style="padding: 10px; border: 1px solid white;">40+ projects, 5 languages, 8 categories</td>
+                    <td style="padding: 10px; border: 1px solid white;">30 sec</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid white;">0:45-1:30</td>
+                    <td style="padding: 10px; border: 1px solid white;">Language Distribution</td>
+                    <td style="padding: 10px; border: 1px solid white;">Python, PHP, JavaScript, HTML/CSS, C++</td>
+                    <td style="padding: 10px; border: 1px solid white;">45 sec</td>
+                </tr>
+                <tr style="background: rgba(0,0,0,0.1);">
+                    <td style="padding: 10px; border: 1px solid white;">1:30-4:00</td>
+                    <td style="padding: 10px; border: 1px solid white;">Projects Showcase</td>
+                    <td style="padding: 10px; border: 1px solid white;">Tab through all project categories</td>
+                    <td style="padding: 10px; border: 1px solid white;">2:30 min</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid white;">4:00-5:30</td>
+                    <td style="padding: 10px; border: 1px solid white;">Git Workflow</td>
+                    <td style="padding: 10px; border: 1px solid white;">Fork, branch, commit, push, PR, merge</td>
+                    <td style="padding: 10px; border: 1px solid white;">1:30 min</td>
+                </tr>
+                <tr style="background: rgba(0,0,0,0.1);">
+                    <td style="padding: 10px; border: 1px solid white;">5:30-7:00</td>
+                    <td style="padding: 10px; border: 1px solid white;">FUDMA-BOT</td>
+                    <td style="padding: 10px; border: 1px solid white;">Main project overview and features</td>
+                    <td style="padding: 10px; border: 1px solid white;">1:30 min</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid white;">7:00-8:30</td>
+                    <td style="padding: 10px; border: 1px solid white;">Git Commands</td>
+                    <td style="padding: 10px; border: 1px solid white;">Essential terminal commands</td>
+                    <td style="padding: 10px; border: 1px solid white;">1:30 min</td>
+                </tr>
+                <tr style="background: rgba(0,0,0,0.1);">
+                    <td style="padding: 10px; border: 1px solid white;">8:30-9:30</td>
+                    <td style="padding: 10px; border: 1px solid white;">GitHub CLI</td>
+                    <td style="padding: 10px; border: 1px solid white;">GitHub command-line tool guide</td>
+                    <td style="padding: 10px; border: 1px solid white;">1 min</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid white;">9:30-10:30</td>
+                    <td style="padding: 10px; border: 1px solid white;">Best Practices</td>
+                    <td style="padding: 10px; border: 1px solid white;">Code style, testing, conventions</td>
+                    <td style="padding: 10px; border: 1px solid white;">1 min</td>
+                </tr>
+                <tr style="background: rgba(0,0,0,0.1);">
+                    <td style="padding: 10px; border: 1px solid white;">10:30-11:00</td>
+                    <td style="padding: 10px; border: 1px solid white;">GitHub Unwrapped</td>
+                    <td style="padding: 10px; border: 1px solid white;">Click link, show 2024 profile</td>
+                    <td style="padding: 10px; border: 1px solid white;">30 sec</td>
+                </tr>
+            </table>
+            
+            <h3 style="color: white; margin-top: 30px;">🎬 Recording Tips for Best Quality</h3>
+            <div class="recording-step">
+                <p>✅ <strong>Do:</strong></p>
+                <p>• Scroll smoothly and slowly so viewers can read content</p>
+                <p>• Hover over interactive elements to show animations</p>
+                <p>• Speak clearly with proper pronunciation</p>
+                <p>• Pause briefly after each major section</p>
+                <p>• Show your GitHub profile at the beginning and end</p>
+                <p>• Keep background music at low volume if adding any</p>
+            </div>
+            <div class="recording-step">
+                <p>❌ <strong>Don't:</strong></p>
+                <p>• Scroll too fast - people won't have time to read</p>
+                <p>• Have distracting notifications or sounds in background</p>
+                <p>• Mumble or speak too quickly</p>
+                <p>• Include sensitive information (API keys, passwords)</p>
+                <p>• Make the video longer than 15 minutes</p>
+                <p>• Forget to add captions for accessibility</p>
+            </div>
+        </section>
     </div>
     
     <script>
